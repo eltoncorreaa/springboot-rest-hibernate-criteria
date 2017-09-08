@@ -1,4 +1,4 @@
-# spring-boot-mybatis
+# spring-boot-hibernate-criteria
 A simple Spring-Boot rest application with hibernate and criteria for consults per filter.
 
 To run: 
