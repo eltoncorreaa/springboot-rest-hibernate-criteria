@@ -12,7 +12,7 @@
 	<groupId>com.elton.app</groupId>
 	<artifactId>app</artifactId>
 	<version>1.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	
 	
 	<name>springboot-rest-hibernate-criteria</name>
