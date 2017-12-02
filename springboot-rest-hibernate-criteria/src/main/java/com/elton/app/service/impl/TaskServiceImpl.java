@@ -24,7 +24,8 @@ public class TaskServiceImpl implements TaskService{
 	@Autowired
 	private TaskRepository taskRepository;
 
-	private static final String NOME_OBRIGATORIO = "O Nome é obrigatório.";
+	private static final String NOME_OBRIGATORIO = "Name is Required.";
+	private static final String START_DATE_REQUIRED = "Start Date is Required.";
 	private static final String lOCK_OPTIMISTIC = "Entidade desatualizada, favor atualizar a página para concluir alteração.";
 
 	@Override
@@ -72,14 +73,22 @@ public class TaskServiceImpl implements TaskService{
 	private ArrayList<TaskException> validatePersistTask(final TaskDTO taskDTO) {
 		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
 		validateName(taskDTO, errors);
+		validateStartDate(taskDTO, errors);
 		return errors;
 	}
 
 	private ArrayList<TaskException> validateUpdateTask(final TaskDTO taskDTO) {
 		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
 		validateName(taskDTO, errors);
+		validateStartDate(taskDTO, errors);
 		validateLockOptimistic(taskDTO, errors);
 		return errors;
+	}
+
+	private void validateStartDate(final TaskDTO taskDTO, final ArrayList<TaskException> errors) {
+		if (taskDTO.getStartDate() == null) {
+			errors.add(new TaskException(START_DATE_REQUIRED));
+		}
 	}
 
 	private void validateName(final TaskDTO taskDTO, final ArrayList<TaskException> errors) {
