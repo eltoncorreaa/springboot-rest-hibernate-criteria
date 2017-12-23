@@ -13,7 +13,25 @@ public class TaskDTO extends AbstractDTO {
 	@JsonSerialize(using = CustomDateSerializer.class)
 	@JsonDeserialize(using = CustomDateDeserializer.class)
 	private Date startDate;
+	@JsonSerialize(using = CustomDateSerializer.class)
+	@JsonDeserialize(using = CustomDateDeserializer.class)
+	private Date creationTime;
+	@JsonSerialize(using = CustomDateSerializer.class)
+	@JsonDeserialize(using = CustomDateDeserializer.class)
+	private Date lastUpdateTime;
 
+	public Date getCreationTime() {
+		return creationTime;
+	}
+	public void setCreationTime(final Date creationTime) {
+		this.creationTime = creationTime;
+	}
+	public Date getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+	public void setLastUpdateTime(final Date lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
+	}
 	public String getName() {
 		return name;
 	}

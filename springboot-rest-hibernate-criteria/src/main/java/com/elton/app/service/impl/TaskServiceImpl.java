@@ -46,9 +46,10 @@ public class TaskServiceImpl implements TaskService{
 	@Transactional(readOnly = false)
 	@Override
 	public TaskDTO update(final TaskDTO taskDTO) {
-		TaskConverter.toModel(taskDTO).setLastUpdateTime(new Date());
-		checkException(validateUpdateTask(taskDTO));
-		return TaskConverter.toDTO(taskRepository.save(TaskConverter.toModel(taskDTO)));
+		final Task taskEntity= TaskConverter.toModel(taskDTO);
+		taskEntity.setLastUpdateTime(new Date());
+		checkException(validateUpdateTask(taskEntity));
+		return TaskConverter.toDTO(taskRepository.save(taskEntity));
 	}
 
 	@Transactional(readOnly = false)
@@ -60,8 +61,10 @@ public class TaskServiceImpl implements TaskService{
 	@Transactional(readOnly = false)
 	@Override
 	public TaskDTO persist(final TaskDTO taskDTO) {
-		checkException(validatePersistTask(taskDTO));
-		return TaskConverter.toDTO(taskRepository.save(TaskConverter.toModel(taskDTO)));
+		final Task taskEntity= TaskConverter.toModel(taskDTO);
+		taskEntity.setCreationTime(new Date());
+		checkException(validatePersistTask(taskEntity));
+		return TaskConverter.toDTO(taskRepository.save(taskEntity));
 	}
 
 	private void checkException(final ArrayList<TaskException> exceptions) {
@@ -70,34 +73,34 @@ public class TaskServiceImpl implements TaskService{
 		}
 	}
 
-	private ArrayList<TaskException> validatePersistTask(final TaskDTO taskDTO) {
+	private ArrayList<TaskException> validatePersistTask(final Task task) {
 		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
-		validateName(taskDTO, errors);
-		validateStartDate(taskDTO, errors);
+		validateName(task, errors);
+		validateStartDate(task, errors);
 		return errors;
 	}
 
-	private ArrayList<TaskException> validateUpdateTask(final TaskDTO taskDTO) {
+	private ArrayList<TaskException> validateUpdateTask(final Task task) {
 		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
-		validateName(taskDTO, errors);
-		validateStartDate(taskDTO, errors);
-		validateLockOptimistic(taskDTO, errors);
+		validateName(task, errors);
+		validateStartDate(task, errors);
+		validateLockOptimistic(task, errors);
 		return errors;
 	}
 
-	private void validateStartDate(final TaskDTO taskDTO, final ArrayList<TaskException> errors) {
-		if (taskDTO.getStartDate() == null) {
+	private void validateStartDate(final Task task, final ArrayList<TaskException> errors) {
+		if (task.getStartDate() == null) {
 			errors.add(new TaskException(START_DATE_REQUIRED));
 		}
 	}
 
-	private void validateName(final TaskDTO taskDTO, final ArrayList<TaskException> errors) {
-		if (StringUtils.isBlank(taskDTO.getName())) {
+	private void validateName(final Task task, final ArrayList<TaskException> errors) {
+		if (StringUtils.isBlank(task.getName())) {
 			errors.add(new TaskException(NOME_OBRIGATORIO));
 		}
 	}
 
-	private void validateLockOptimistic(final TaskDTO task, final ArrayList<TaskException> errors) {
+	private void validateLockOptimistic(final Task task, final ArrayList<TaskException> errors) {
 		if (!taskRepository.findOne(task.getId()).getVersion().equals(task.getVersion()) ) {
 			errors.add(new TaskException(lOCK_OPTIMISTIC));
 		}

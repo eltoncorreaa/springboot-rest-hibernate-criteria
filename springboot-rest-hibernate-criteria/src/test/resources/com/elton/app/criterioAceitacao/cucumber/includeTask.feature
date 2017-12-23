@@ -24,7 +24,7 @@ Funcionalidade: Incluir uma Task da aplicação
      E a informação obrigatória <informacao_obrigatoria> da task com o valor <valor>
      Quando tento salvar a Task
 	 Entao <resultado>
-	 Exemplos: 
+	 Exemplos: considera espaços à esquerda e a direita
        | informacao_obrigatoria |          valor     |                    resultado                 |
        | Nome                   | ""                 | falha:O preenchimento do nome é obrigatório. |
        | Nome                   | " "                | falha:O preenchimento do nome é obrigatório. |
