@@ -8,6 +8,6 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(monochrome = true, features = "classpath:com/elton/app/criterioAceitacao/cucumber",
 tags = "~@skip", strict = false)
-public class RunCakesTest {
-
+public class RunCakesTest {// NOSONAR Illegal
+	// Classe de apoio ao cucumber
 }
