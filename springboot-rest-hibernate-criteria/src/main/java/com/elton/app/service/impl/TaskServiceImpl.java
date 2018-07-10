@@ -35,12 +35,12 @@ public class TaskServiceImpl implements TaskService{
 
 	@Override
 	public List<TaskDTO> findAll() {
-		return TaskConverter.toListDTO((List<Task>) taskRepository.findAll());
+		return TaskConverter.toListDTO(taskRepository.findAll());
 	}
 
 	@Override
 	public TaskDTO findById(final Long id) {
-		return TaskConverter.toDTO(taskRepository.findOne(id));
+		return TaskConverter.toDTO(taskRepository.findById(id).get());
 	}
 
 	@Transactional(readOnly = false)
@@ -55,7 +55,7 @@ public class TaskServiceImpl implements TaskService{
 	@Transactional(readOnly = false)
 	@Override
 	public void delete(final Long id) {
-		taskRepository.delete(id);
+		taskRepository.deleteById(id);
 	}
 
 	@Transactional(readOnly = false)
@@ -101,7 +101,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	private void validateLockOptimistic(final Task task, final ArrayList<TaskException> errors) {
-		if (!taskRepository.findOne(task.getId()).getVersion().equals(task.getVersion()) ) {
+		if (!taskRepository.findById(task.getId()).get().getVersion().equals(task.getVersion()) ) {
 			errors.add(new TaskException(lOCK_OPTIMISTIC));
 		}
 	}
