@@ -8,35 +8,27 @@ import org.apache.commons.lang.ArrayUtils;
 import com.elton.app.exception.MultipleTaskException;
 import com.elton.app.exception.TaskException;
 
-abstract class TaskExceptionIntTest {
+public abstract class TaskExceptionIntTest {
 
 	protected List<String> validacao = new ArrayList<>();
 
-	public void tratarErrosDeExcecao(final Exception e){
-		final List<String> excessoes= new ArrayList<>();
+	public void tratarErrosDeExcecao(final Exception e) {
 		if (e instanceof MultipleTaskException) {
 			final MultipleTaskException me = (MultipleTaskException) e;
 			for (final TaskException exception : me.getExceptions()) {
-				excessoes.add(exception.getMessage());
+				validacao.add(exception.getMessage());
 			}
-		}else if (e instanceof TaskException){
+		} else if (e instanceof TaskException) {
 			final TaskException exception = (TaskException) e;
-			excessoes.add(exception.getMessage());
-		}else{
-			excessoes.add("erro generico");
+			validacao.add(exception.getMessage());
+		} else {
+			validacao.add("erro generico");
 		}
-		validacao.addAll(excessoes);
 	}
 
 	public Boolean verificaRetornoExcecao(final String mensagem, final String... params) {
-		return verificaRetornoExcecao(validacao, mensagem, params);
-	}
-
-	public Boolean verificaRetornoExcecao(final List<String> excecoes, final String mensagem,
-			final String... params) {
 		Boolean retorno = false;
-
-		for (final String exceptionMessage : excecoes) {
+		for (final String exceptionMessage : validacao) {
 			if (exceptionMessage.equals(mensagem) && (ArrayUtils.isEmpty(params))) {
 				retorno = true;
 				break;
