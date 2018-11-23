@@ -1,5 +1,5 @@
 # springboot-hibernate-criteria-envers
-A simple Spring-Boot rest application with hibernate criteria for consults per filter, hibernate envers for auditable logs, and tests integration with cucumber.
+A simple Spring-Boot rest application with hibernate criteria for consults per filter, hibernate envers for auditable logs, swagger, and tests integration with cucumber.
 
 To run: 
 
