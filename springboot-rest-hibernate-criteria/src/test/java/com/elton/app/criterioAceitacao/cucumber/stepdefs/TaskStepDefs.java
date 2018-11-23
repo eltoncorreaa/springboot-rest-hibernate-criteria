@@ -4,26 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootContextLoader;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.elton.app.Application;
 import com.elton.app.dto.TaskDTO;
+import com.elton.app.objectfactory.TaskMother;
 import com.elton.app.service.TaskService;
-import com.elton.app.utils.AbstractDefs;
-import com.elton.app.utils.factory.TaskMother;
+import com.elton.app.util.SpringIntegrationTest;
 
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = SpringBootContextLoader.class, classes = Application.class)
-public class TaskStepDefs extends AbstractDefs{
+public class TaskStepDefs extends SpringIntegrationTest{
 
 	@Autowired
 	private TaskService taskService;
@@ -32,7 +25,7 @@ public class TaskStepDefs extends AbstractDefs{
 
 	private static final String CAMPO_START_DATE = "startDate";
 
-	private static Map<String, String> mapaCampos = new HashMap<String, String>();
+	private static Map<String, String> mapaCampos = new HashMap<>();
 
 	static {
 		mapaCampos.put("Name", "setName");
