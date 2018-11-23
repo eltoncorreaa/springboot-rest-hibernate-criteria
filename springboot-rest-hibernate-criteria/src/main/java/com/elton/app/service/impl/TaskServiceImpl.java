@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,14 +73,14 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	private ArrayList<TaskException> validatePersistTask(final Task task) {
-		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
+		final ArrayList<TaskException> errors = new ArrayList<>();
 		validateName(task, errors);
 		validateStartDate(task, errors);
 		return errors;
 	}
 
 	private ArrayList<TaskException> validateUpdateTask(final Task task) {
-		final ArrayList<TaskException> errors = new ArrayList<TaskException>();
+		final ArrayList<TaskException> errors = new ArrayList<>();
 		validateName(task, errors);
 		validateStartDate(task, errors);
 		validateLockOptimistic(task, errors);
@@ -95,7 +94,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	private void validateName(final Task task, final ArrayList<TaskException> errors) {
-		if (StringUtils.isBlank(task.getName())) {
+		if (task.getName().isEmpty()) {
 			errors.add(new TaskException(NOME_OBRIGATORIO));
 		}
 	}

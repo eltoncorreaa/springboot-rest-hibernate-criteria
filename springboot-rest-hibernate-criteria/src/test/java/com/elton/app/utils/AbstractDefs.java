@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import com.elton.app.dto.AbstractDTO;
 
 public abstract class AbstractDefs extends TaskExceptionIntTest{
@@ -38,8 +36,7 @@ public abstract class AbstractDefs extends TaskExceptionIntTest{
 		return inteiro;
 	}
 
-	public Map<String, String> getMapaCampos() {
-		throw new NotImplementedException("Não há mapa de campos implementado.");
+	public Map<String, String> getMapaCampos() throws Exception {
+		throw new Exception("Não há mapa de campos implementado.");
 	}
-
 }

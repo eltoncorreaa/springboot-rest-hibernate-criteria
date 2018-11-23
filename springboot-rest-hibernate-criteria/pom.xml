@@ -10,7 +10,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elton.app</groupId>
-	<artifactId>app</artifactId>
+	<artifactId>springboot-hibernate-criteria</artifactId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	
@@ -18,7 +18,6 @@
 	<name>springboot-rest-hibernate-criteria</name>
 	
 	<properties>
-		<!-- use utf-8 encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -39,13 +38,7 @@
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-		</dependency>
-			
-		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.6</version>
-		</dependency>
+		</dependency>	
 		
 		<dependency>
 		    <groupId>org.modelmapper</groupId>
@@ -54,8 +47,9 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 				
 		<dependency>
@@ -65,12 +59,23 @@
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>		
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 				
 		<dependency>

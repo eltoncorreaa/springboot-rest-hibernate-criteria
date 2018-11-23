@@ -13,6 +13,7 @@ public abstract class AbstractRepository {
 	@PersistenceContext
 	protected EntityManager em;
 
+	@SuppressWarnings("deprecation")
 	protected Criteria createCriteria(final Class<?> persistenceClass) {
 		return em.unwrap(Session.class).createCriteria(persistenceClass);
 	}

@@ -3,8 +3,6 @@ package com.elton.app.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.ArrayUtils;
-
 import com.elton.app.exception.MultipleTaskException;
 import com.elton.app.exception.TaskException;
 
@@ -29,7 +27,7 @@ public abstract class TaskExceptionIntTest {
 	public Boolean verificaRetornoExcecao(final String mensagem, final String... params) {
 		Boolean retorno = false;
 		for (final String exceptionMessage : validacao) {
-			if (exceptionMessage.equals(mensagem) && (ArrayUtils.isEmpty(params))) {
+			if (exceptionMessage.equals(mensagem)) {
 				retorno = true;
 				break;
 			}
