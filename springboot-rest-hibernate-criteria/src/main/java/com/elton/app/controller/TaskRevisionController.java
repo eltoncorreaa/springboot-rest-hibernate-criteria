@@ -22,7 +22,7 @@ public class TaskRevisionController {
 	@Autowired
 	private TaskRevisionService service;
 
-	@RequestMapping("/api/v1/tasks/revisions/{taskCode}")
+	@RequestMapping("/v1/revisions/{taskCode}")
 	public ResponseEntity<?> getCityRevisions(@PathVariable final Long taskCode) {
 		final List<DTOWithRevision<TaskDTO>> result = TaskConverter.toListDTORevision(service.listTaskRevisions(taskCode));
 		return new ResponseEntity<>(result, HttpStatus.OK);
