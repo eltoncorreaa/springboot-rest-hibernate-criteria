@@ -94,7 +94,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	private void validateName(final Task task, final ArrayList<TaskException> errors) {
-		if (task.getName().isEmpty()) {
+		if (task.getName().trim().isEmpty()) {
 			errors.add(new TaskException(NOME_OBRIGATORIO));
 		}
 	}
