@@ -9,14 +9,14 @@ mvn spring-boot:run
 
 Endpoints
 
-* http://localhost:9090/task/{id} (GET) get by id
-* http://localhost:9090/task (GET) get all
-* http://localhost:9090/task?name=teste (GET) find by filter
-* http://localhost:9090/task (POST) insert. json= {"name":"name", "startDate":"15/05/2017"}
-* http://localhost:9090/task (PUT) update. json= {"id":"1", "name":"name updated", "startDate":"16/05/2017", "version":"0"}
-* http://localhost:9090/task/{id} (DELETE) delete by id
+* http://localhost:9090/tasks/v1/{id} (GET) get by id
+* http://localhost:9090/tasks/v1/ (GET) get all
+* http://localhost:9090/tasks/v1/?name=teste (GET) find by filter
+* http://localhost:9090/tasks/v1/ (POST) insert. json= {"name":"name", "startDate":"15/05/2017"}
+* http://localhost:9090/tasks/v1/ (PUT) update. json= {"id":"1", "name":"name updated", "startDate":"16/05/2017", "version":"0"}
+* http://localhost:9090/tasks/v1/{id} (DELETE) delete by id
 
-* http://localhost:9090/api/v1/tasks/revisions/{id} (GET) get all revisions of tasks entitys.
+* http://localhost:9090/tasks/v1/revisions/{id} (GET) get all revisions of tasks entitys.
  
  
  RevType - Type revisions standard of hibernate envers.
